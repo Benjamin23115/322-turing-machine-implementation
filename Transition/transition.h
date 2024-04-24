@@ -1,7 +1,7 @@
 #ifndef transition_h
 #define transition_h
 
-#include "../direction.h"
+#include "abstract.h"
 #include <string>
 
 using namespace std;
@@ -16,7 +16,7 @@ private:
     Direction move;
 
 public:
-    void Transition(string Source_State, char Read_Character, string Destination_State, char Write_Character, Direction Move_Direction);
+    Transition(string Source_State, char Read_Character, string Destination_State, char Write_Character, Direction Move_Direction);
     string Source_State();
     char Read_Character();
     string Destination_State();

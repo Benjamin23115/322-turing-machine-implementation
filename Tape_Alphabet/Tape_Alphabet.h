@@ -1,6 +1,6 @@
 #ifndef tape_alphabet_h
 #define tape_alphabet_h
-
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -10,8 +10,8 @@ private:
     vector<char> Alphabet;
 
 public:
-    void Load(File Definition, bool Valid);
-    bool Is_Element(char value);
+    void load(fstream &definition, bool &valid);
+    bool Is_Element(char value) const;
 };
 
 #endif
