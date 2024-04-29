@@ -29,3 +29,34 @@ void Input_Alphabet::load(ifstream &definition, bool &valid)
         valid = true;
     }
 }
+void Input_Alphabet::view() const
+{
+    cout << "Sigma = { ";
+    for (int i = 0; i < size(); i++)
+    {
+        cout << element(i) << " ";
+    }
+    cout << "}" << endl;
+}
+
+int Input_Alphabet::size() const
+{
+    return alphabet.size();
+}
+
+char Input_Alphabet::element(int index) const
+{
+    return alphabet.at(index);
+}
+
+bool Input_Alphabet::is_element(char value) const
+{
+    for (int i = 0; i < size(); i++)
+    {
+        if (element(i) == value)
+        {
+            return true;
+        }
+    }
+    return false;
+}
