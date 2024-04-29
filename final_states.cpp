@@ -9,18 +9,18 @@ using namespace std;
 
 void Final_States::load(ifstream &definition, bool &valid)
 {
-    valid = false; // Initially set to false
+    valid = true;
     string token;
     while (definition >> token)
     {
         if (is_element(token))
         {
+            valid = false;
             cout << "Error: Duplicate final state entry found: " << token << endl;
             return; // Exit immediately upon encountering an error
         }
         names.push_back(token);
     }
-    valid = true; // Set to true only if no errors encountered
 }
 
 void Final_States::view() const

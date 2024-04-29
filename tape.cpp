@@ -21,16 +21,16 @@ Tape::Tape()
 void Tape::load(ifstream &definition, bool &valid)
 {
     string value;
-    if ((definition >> value) && (value.length() == 1) && (value[0] >= '!') && (value[0] <= '~') && (value[0] != '\\') && (value[0] != '[') && (value[0] != ']') && (value[0] != '<') && (value[0] != '>'))
+    if ((definition >> value) && (value.length() == 1) && (value[0] != '\\') && (value[0] != '[') && (value[0] != ']') && (value[0] != '<') && (value[0] != '>') && (value[0] >= '!') && (value[0] <= '~'))
     {
-        blank_character = value[0];
+        blank_character = value.at(0);
     }
     else
     {
         cout << "Error: Illegal blank_character." << endl;
         valid = false;
     }
-    if (!(definition >> value) || value != "FINAL_STATES:")
+    if ((!(definition >> value)) || value != "FINAL_STATES:")
     {
         cout << "Error: Missing Keyword after blank character." << endl;
         valid = false;
