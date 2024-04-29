@@ -6,37 +6,44 @@
 
 using namespace std;
 
-void States::load(ifstream& definition, bool& valid){
+void States::load(ifstream &definition, bool &valid)
+{
     valid = false;
     string token;
     definition >> token;
-    while(token != "INPUT_ALPHABET:"){    
-        if(is_element(token)){
+    while (token != "INPUT_ALPHABET:")
+    {
+        if (is_element(token))
+        {
+            cout << "Error: Duplicate state name '" << token << "' found." << endl;
             valid = false;
             break;
-        } else {
+        }
+        else
+        {
             names.push_back(token);
         }
         definition >> token;
     }
-    if(names.size() == 0){
-        valid = false;
-    } else {
-        valid = true;
-    }
+    valid = !names.empty();
 }
 
-void States::view() const{
+void States::view() const
+{
     cout << "Q = { ";
-    for(unsigned int i = 0; i < names.size(); i++){
-        cout << names[i] << " ";
+    for (const string &state : names)
+    {
+        cout << state << " ";
     }
     cout << "}" << endl;
 }
 
-bool States::is_element(string value) const{
-    for(unsigned int i = 0; i < names.size(); i++){
-        if(names[i] == value){
+bool States::is_element(string value) const
+{
+    for (const string &state : names)
+    {
+        if (state == value)
+        {
             return true;
         }
     }

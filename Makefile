@@ -11,9 +11,6 @@ default: $(BINS)
 turing_machine.o: turing_machine.cpp turing_machine.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-crash.o: crash.cpp crash.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
 final_states.o: final_states.cpp final_states.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -51,7 +48,7 @@ clean:
 # TuringMachine: main.o
 # 	$(CC) $(LDFLAGS) $^ $(LIBRARIES) -o $@
 
-TuringMachine: main.o turing_machine.o input_strings.o crash.o input_alphabet.o final_states.o states.o tape.o transition.o uppercase.o transition_function.o tape_alphabet.o
+TuringMachine: main.o turing_machine.o input_strings.o input_alphabet.o final_states.o states.o tape.o transition.o uppercase.o transition_function.o tape_alphabet.o
 	$(CC) $(LDFLAGS) $^ $(LIBRARIES) -o $@
 
 .PHONY: immaculate

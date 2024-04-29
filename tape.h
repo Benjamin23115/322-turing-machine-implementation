@@ -5,7 +5,6 @@
 #include "tape_alphabet.h"
 #include "direction.h"
 #include "uppercase.h"
-#include "crash.h"
 
 #include <string>
 #include <fstream>

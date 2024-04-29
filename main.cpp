@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        cout << "Error Invalid number of arguments" << endl;
+        cout << "Error: Invalid number of arguments" << endl;
         return 1;
     }
 

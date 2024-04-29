@@ -15,13 +15,13 @@ void Tape_Alphabet::load(ifstream &definition, bool &valid)
     {
         if (token.size() != 1)
         {
-            cout << "Error: Invalid tape alphabet character: '" << token << "',";
-            cout << "Tape alphabet characters must be a single character." << endl;
+            cout << "Error: Invalid tape alphabet character: '" << token << "'.";
+            cout << " Tape alphabet characters must be a single character." << endl;
             break;
         }
         else
         {
-            alphabet.push_back(token.at(0));
+            alphabet.push_back(token[0]);
         }
         definition >> token;
     }
@@ -34,18 +34,18 @@ void Tape_Alphabet::load(ifstream &definition, bool &valid)
 void Tape_Alphabet::view() const
 {
     cout << "Gamma = { ";
-    for (unsigned int i = 0; i < alphabet.size(); i++)
+    for (char character : alphabet)
     {
-        cout << alphabet[i] << " ";
+        cout << character << " ";
     }
     cout << "}" << endl;
 }
 
 bool Tape_Alphabet::is_element(char value) const
 {
-    for (unsigned int i = 0; i < alphabet.size(); i++)
+    for (char character : alphabet)
     {
-        if (alphabet[i] == value)
+        if (character == value)
         {
             return true;
         }

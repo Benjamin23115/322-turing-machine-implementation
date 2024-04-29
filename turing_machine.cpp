@@ -20,6 +20,7 @@ Turing_Machine::Turing_Machine(string definition_file_name)
     op_operating = false;
     accepted = false;
     rejected = false;
+    valid = true; // Assume the definition is valid until proven otherwise
 
     ifstream definition(definition_file_name.append(".def"));
     if (!definition)
@@ -42,6 +43,7 @@ Turing_Machine::Turing_Machine(string definition_file_name)
     else
     {
         cout << "Error: STATES: keyword not found." << endl;
+        valid = false;
     }
 
     if (valid)
@@ -109,6 +111,7 @@ Turing_Machine::Turing_Machine(string definition_file_name)
     }
     definition.close();
 }
+
 void Turing_Machine::view_description() const
 {
     for (unsigned int i = 0; i < description.size(); i++)
@@ -124,10 +127,12 @@ void Turing_Machine::view_description() const
     cout << "q0 = " << initial_state << endl;
     final_states.view();
 }
+
 void Turing_Machine::view_instantaneous_description(int maximum_number_of_cells) const
 {
     cout << total_number_of_transitions() << ". " << input_tape.left(maximum_number_of_cells) << "[" << current_state << "]" << input_tape.right(maximum_number_of_cells) << endl;
 }
+
 void Turing_Machine::initialize(string input_string)
 {
     this->original_input_string = input_string;
@@ -138,7 +143,7 @@ void Turing_Machine::initialize(string input_string)
 
 void Turing_Machine::perform_transitions(int maximum_number_of_transitions)
 {
-    if (!is_operating())
+    if (!op_operating)
     {
         op_operating = true;
     }
@@ -176,10 +181,10 @@ void Turing_Machine::perform_transitions(int maximum_number_of_transitions)
         number_of_transitions++;
     }
 }
+
 void Turing_Machine::terminate_operation()
 {
-
-    if (is_used())
+    if (op_used)
     {
         cout << "Input String file written" << endl;
     }
@@ -198,31 +203,37 @@ string Turing_Machine::input_string() const
         return "";
     }
 }
+
 bool Turing_Machine::is_valid_definition() const
 {
     return valid;
 }
+
 bool Turing_Machine::is_valid_input_string(string value) const
 {
-    return valid;
+    return valid; // Placeholder implementation, needs to be implemented properly
 }
 
 int Turing_Machine::total_number_of_transitions() const
 {
     return number_of_transitions;
 }
+
 bool Turing_Machine::is_used()
 {
     return op_used;
 }
+
 bool Turing_Machine::is_operating()
 {
     return op_operating;
 }
+
 bool Turing_Machine::is_accepted_input_string()
 {
     return accepted;
 }
+
 bool Turing_Machine::is_rejected_input_string()
 {
     return rejected;

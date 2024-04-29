@@ -9,30 +9,28 @@ using namespace std;
 
 void Final_States::load(ifstream &definition, bool &valid)
 {
-    valid = true;
+    valid = false; // Initially set to false
     string token;
     while (definition >> token)
     {
         if (is_element(token))
         {
-            valid = false;
-            cout << "Error: False Final States Entry" << endl;
+            cout << "Error: Duplicate final state entry found: " << token << endl;
+            return; // Exit immediately upon encountering an error
         }
-        else
-        {
-            names.push_back(token);
-        }
+        names.push_back(token);
     }
+    valid = true; // Set to true only if no errors encountered
 }
 
 void Final_States::view() const
 {
     cout << "F = { ";
-    for (int i = 0; i < size(); i++)
+    for (const string &name : names)
     {
-        cout << names[i] << " ";
+        cout << name << " ";
     }
-    cout << "})" << endl;
+    cout << "}" << endl;
 }
 
 int Final_States::size() const
@@ -47,9 +45,9 @@ string Final_States::element(int index) const
 
 bool Final_States::is_element(string value) const
 {
-    for (int i = 0; i < size(); i++)
+    for (const string &name : names)
     {
-        if (element(i) == value)
+        if (name == value)
         {
             return true;
         }
